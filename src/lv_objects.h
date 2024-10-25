@@ -1,5 +1,5 @@
-#ifndef LV_BUTTON_H__
-#define LV_BUTTON_H__
+#ifndef LV_OBJECTS_H__
+#define LV_OBJECTS_H__
 
 extern "C" {
 
@@ -9,4 +9,4 @@ extern "C" {
 
 };
 
-#endif // LV_BUTTON_H__
+#endif // LV_OBJECTS_H__
