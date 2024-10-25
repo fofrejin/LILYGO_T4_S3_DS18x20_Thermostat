@@ -1,6 +1,9 @@
 #include <lvgl.h>
 #if LV_USE_BTN
 
+#define BUTTON_SIZE_W 180
+#define BUTTON_SIZE_H 100
+
 static void event_handler(lv_event_t *e)
 {
     lv_event_code_t code = lv_event_get_code(e);
@@ -23,7 +26,7 @@ void lv_display_button(void)
     lv_obj_t *btn1 = lv_btn_create(lv_scr_act());
     lv_obj_add_event_cb(btn1, event_handler, LV_EVENT_ALL, NULL);
     lv_obj_align(btn1, LV_ALIGN_CENTER, 0, -150);
-    lv_obj_set_size(btn1, 200, 100);
+    lv_obj_set_size(btn1, BUTTON_SIZE_W, BUTTON_SIZE_H);
 
     label = lv_label_create(btn1);
     lv_obj_set_style_text_font(label, &lv_font_montserrat_48, 0);
@@ -34,7 +37,7 @@ void lv_display_button(void)
     lv_obj_t *btn2 = lv_btn_create(lv_scr_act());
     lv_obj_add_event_cb(btn2, event_handler, LV_EVENT_ALL, NULL);
     lv_obj_align(btn2, LV_ALIGN_CENTER, 0, 150);
-    lv_obj_set_size(btn2, 200, 100);
+    lv_obj_set_size(btn2, BUTTON_SIZE_W, BUTTON_SIZE_H);
 
     label = lv_label_create(btn2);
     lv_obj_set_style_text_font(label, &lv_font_montserrat_48, 0);
@@ -47,7 +50,7 @@ void lv_display_button(void)
     lv_obj_align(btn3, LV_ALIGN_CENTER, 200, 0);
     lv_obj_add_flag(btn3, LV_OBJ_FLAG_CHECKABLE);
     lv_obj_set_height(btn3, LV_SIZE_CONTENT);
-    lv_obj_set_size(btn3, 200, 100);
+    lv_obj_set_size(btn3, BUTTON_SIZE_W, BUTTON_SIZE_H);
 
     label = lv_label_create(btn3);
     lv_obj_set_style_text_font(label, &lv_font_montserrat_40, 0);
