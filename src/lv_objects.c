@@ -5,6 +5,7 @@
 
 static lv_obj_t * label1;
 static lv_obj_t * label2;
+static lv_obj_t * label3;
 static lv_obj_t * img1;
 
 static float setpoint_temperature = 0;
@@ -99,7 +100,7 @@ void lv_init_labels(void)
     lv_img_set_src(img1, &image_1_600x450);
     lv_obj_center(img1);
 
-    // Display temperature label
+    // Display setpoint_temperature label
     label1 = lv_label_create(lv_scr_act());
     lv_obj_set_style_text_font(label1, &lv_font_montserrat_48, 0);
     // lv_label_set_text(label1, "0°C");
@@ -107,15 +108,26 @@ void lv_init_labels(void)
     // lv_obj_center(label1);
     lv_obj_align(label1, LV_ALIGN_LEFT_MID, 10, 0);
 
-    // Display temperature label
+    // Display current temperature label
     label2 = lv_label_create(lv_scr_act());
     lv_obj_set_style_text_font(label2, &lv_font_montserrat_48, 0);
     lv_label_set_text(label2, "0°C");
     // lv_obj_center(label2);
     lv_obj_align(label2, LV_ALIGN_CENTER, 0, 0);
+
+    // Display temperature_outside label
+    label3 = lv_label_create(lv_scr_act());
+    lv_obj_set_style_text_font(label3, &lv_font_montserrat_48, 0);
+    lv_label_set_text(label3, "Waiting");
+    lv_obj_align(label3, LV_ALIGN_TOP_LEFT, 10, 0);
 }
 
 void lv_set_current_temperature(float temperature)
 {
     lv_label_set_text_fmt(label1, "%.2f°C", temperature);
+}
+
+void lv_set_outside_temperature(float temperature)
+{
+    lv_label_set_text_fmt(label3, "%.2f°C", temperature);
 }

@@ -1,7 +1,8 @@
 #include <LilyGo_AMOLED.h>
 #include <LV_Helper.h>
-#include <lv_button.h>
+#include <lv_objects.h>
 #include <sensors.h>
+#include <weather.h>
 
 LilyGo_Class amoled;
 
@@ -61,6 +62,14 @@ void taskTwo(void * parameter)
     }
 }
 
+void taskThree(void * parameter)
+{
+    while(1) {
+        weather_data_process();
+        vTaskDelay(1800000); // 30 min
+    }
+}
+
 void tasks_init(void)
 {
     xTaskCreate(
@@ -78,6 +87,14 @@ void tasks_init(void)
         NULL,             /* Parameter passed as input of the task */
         1,                /* Priority of the task. */
         NULL);            /* Task handle. */
+
+    xTaskCreate(
+        taskThree,          /* Task function. */
+        "taskThree",        /* String with name of task. */
+        10000,            /* Stack size in bytes. */
+        NULL,             /* Parameter passed as input of the task */
+        1,                /* Priority of the task. */
+        NULL);            /* Task handle. */
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -89,6 +106,7 @@ void setup(void)
     tasks_init();
     pinMode(18, OUTPUT);
     digitalWrite(18, HIGH);
+    setup_connection();
 }
 
 void loop(void)
