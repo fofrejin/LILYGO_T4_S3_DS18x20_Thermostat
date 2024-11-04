@@ -1,8 +1,14 @@
 #include <LilyGo_AMOLED.h>
 #include <LV_Helper.h>
-#include <lv_objects.h>
-#include <sensors.h>
-#include <weather.h>
+#include <Wire.h>
+
+#include "lv_objects.h"
+#include "sensors.h"
+#include "weather.h"
+#include "battery.h"
+
+#define SDA_PIN 6
+#define SCL_PIN 7
 
 LilyGo_Class amoled;
 
@@ -59,6 +65,7 @@ void taskTwo(void * parameter)
 {
     while(1) {
         display_temperature();
+        battery_voltage_display();
     }
 }
 
@@ -107,6 +114,7 @@ void setup(void)
     pinMode(18, OUTPUT);
     digitalWrite(18, HIGH);
     setup_connection();
+    Wire.begin(SDA_PIN, SCL_PIN);
 }
 
 void loop(void)

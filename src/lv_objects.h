@@ -7,6 +7,7 @@ extern "C" {
     void lv_display_button(void);
     void lv_set_current_temperature(float temperature);
     void lv_set_outside_temperature(float temperature);
+    void lv_set_battery_voltage(float voltage);
 
 };
 

@@ -6,7 +6,9 @@
 static lv_obj_t * label1;
 static lv_obj_t * label2;
 static lv_obj_t * label3;
+static lv_obj_t * label4;
 static lv_obj_t * img1;
+static lv_style_t style;
 
 static float setpoint_temperature = 0;
 
@@ -100,6 +102,10 @@ void lv_init_labels(void)
     lv_img_set_src(img1, &image_1_600x450);
     lv_obj_center(img1);
 
+    lv_style_init(&style);
+    lv_style_set_text_font(&style, &lv_font_montserrat_48);
+    lv_style_set_text_color(&style, lv_color_white());
+
     // Display setpoint_temperature label
     label1 = lv_label_create(lv_scr_act());
     lv_obj_set_style_text_font(label1, &lv_font_montserrat_48, 0);
@@ -120,6 +126,12 @@ void lv_init_labels(void)
     lv_obj_set_style_text_font(label3, &lv_font_montserrat_48, 0);
     lv_label_set_text(label3, "Waiting");
     lv_obj_align(label3, LV_ALIGN_TOP_LEFT, 10, 0);
+
+    // Display battery voltage label
+    label4 = lv_label_create(lv_scr_act());
+    lv_label_set_text(label4, "-");
+    lv_obj_align(label4, LV_ALIGN_BOTTOM_LEFT, 10, 0);
+    lv_obj_add_style(label4, &style, LV_PART_MAIN);
 }
 
 void lv_set_current_temperature(float temperature)
@@ -130,4 +142,9 @@ void lv_set_current_temperature(float temperature)
 void lv_set_outside_temperature(float temperature)
 {
     lv_label_set_text_fmt(label3, "%.2f°C", temperature);
+}
+
+void lv_set_battery_voltage(float voltage)
+{
+    lv_label_set_text_fmt(label4, "%.2fV", voltage);
 }
